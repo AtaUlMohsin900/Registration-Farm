@@ -1,8 +1,9 @@
-"use client"
+// src/app/layout.tsx
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import { SessionProvider } from 'next-auth/react';
+import ClientLayout from './ClientLayout';
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -18,11 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider>
-
-        {children}
-        </SessionProvider>
-        </body>
+        <ClientLayout>
+          {children}
+        </ClientLayout>
+      </body>
     </html>
   )
 }

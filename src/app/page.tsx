@@ -1,4 +1,5 @@
 
+"use client"
 import { 
   FaFacebookF,
   FaLinkedin, 
@@ -7,14 +8,20 @@ import {
 } from 'react-icons/fa';
 import { MdLockOutline } from 'react-icons/md'
 import {useSession} from 'next-auth/react'
-
-
-
+import { useState, useEffect } from 'react'
+ 
+  
+ 
 export default function Home() {
+  const [isClient, setIsClient] = useState(false)
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
   const session = useSession()
   console.log("Session", session)
   return (
     <div className='flex flex-col items-center justify-center min-h-screen py-2'>
+    {isClient ? 'This is never prerendered' : 'Prerendered'}
         <head>
           <title>Registration Farm</title>
           <link rel="stylesheet" href="/favicon.ico" />
